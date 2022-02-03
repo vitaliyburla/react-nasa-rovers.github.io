@@ -29,7 +29,9 @@ export const roversActionCreators = {
             dispatch(roversActionCreators.setRovers(rovers.data.rovers));
         } catch (error) {
             dispatch(
-                roversActionCreators.setError('Ohh... Something went wrong!')
+                roversActionCreators.setError(
+                    'Ohh... Something went wrong! Unable to download rover data.'
+                )
             );
         }
         dispatch(roversActionCreators.setIsLoading(false));

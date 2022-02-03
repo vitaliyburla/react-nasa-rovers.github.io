@@ -6,6 +6,8 @@ import {
     Typography,
 } from '@mui/material';
 import React, { FC } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useStyles } from './styles';
 
 interface IRoverCardProps {
     name: string;
@@ -24,30 +26,52 @@ const RoverCard: FC<IRoverCardProps> = ({
     max_date,
     max_sol,
 }) => {
+    const classes = useStyles();
+    const history = useHistory();
+
+    const openRover = () => history.push(`/rovers/${name.toLowerCase()}`);
+
     return (
-        <Card sx={{ minWidth: 275, bgcolor: '#DFE3E8' }}>
+        <Card sx={{ minWidth: 275 }} className={classes.card}>
             <CardContent>
                 <Typography
                     sx={{ fontSize: 14 }}
-                    color="text.secondary"
+                    className={
+                        status === 'active'
+                            ? classes.statusActive
+                            : classes.status
+                    }
                     gutterBottom>
                     {status}
                 </Typography>
-                <Typography variant="h5" component="div">
+                <Typography
+                    variant="h5"
+                    component="div"
+                    className={classes.nameLabel}>
                     {name}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     Landed: {landing_date}
                 </Typography>
                 <Typography variant="body1">
-                    {total_photos} total photos
+                    <Typography
+                        component={'span'}
+                        className={classes.totalPhotosLabel}>
+                        {total_photos}
+                    </Typography>{' '}
+                    total photos
                 </Typography>
                 <Typography variant="body2">
                     Last photo {max_date} ({max_sol} sol)
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">View</Button>
+                <Button
+                    onClick={openRover}
+                    size="small"
+                    className={classes.viewButton}>
+                    View Rover
+                </Button>
             </CardActions>
         </Card>
     );
