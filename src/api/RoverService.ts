@@ -5,10 +5,17 @@ const API = axios.create({
     baseURL: 'https://api.nasa.gov/mars-photos/api/v1',
 });
 
-export const getRovers = (): Promise<AxiosResponse<IRover[]>> => {
-    return API.get<IRover[]>('/rovers', {
+interface IGetRoversResponseData {
+    rovers: IRover[];
+}
+
+export const getRovers = async (): Promise<
+    AxiosResponse<IGetRoversResponseData>
+> => {
+    const resp = await API.get('/rovers', {
         params: {
             api_key: process.env.REACT_APP_NASA_API_KEY,
         },
     });
+    return resp;
 };
