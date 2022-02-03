@@ -1,13 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
-import { IRover } from '../models/IRover';
+import { IGetRoversResponseData } from './types';
 
 const API = axios.create({
     baseURL: 'https://api.nasa.gov/mars-photos/api/v1',
 });
-
-interface IGetRoversResponseData {
-    rovers: IRover[];
-}
 
 export const getRovers = async (): Promise<
     AxiosResponse<IGetRoversResponseData>
