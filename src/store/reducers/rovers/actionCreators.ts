@@ -1,8 +1,13 @@
 import { AppDispatch } from '../..';
-import { getRoverByName, getRovers } from '../../../api/RoverService';
-import { IRover } from '../../../models/IRover';
+import {
+    getRoverByName,
+    getRoverPhotos,
+    getRovers,
+} from '../../../api/RoverService';
+import { IRover, IRoverPhoto } from '../../../models/IRover';
 import {
     ISetCurrentRoverAction,
+    ISetCurrentRoverPhotosAction,
     ISetErrorAction,
     ISetIsLoadingAction,
     ISetRoversAction,
@@ -17,6 +22,12 @@ export const roversActionCreators = {
     setCurrentRover: (rover: IRover): ISetCurrentRoverAction => ({
         type: RoverActionEnum.SET_CURRENT_ROVER,
         payload: rover,
+    }),
+    setCurrentRoverPhotos: (
+        photos: IRoverPhoto[]
+    ): ISetCurrentRoverPhotosAction => ({
+        type: RoverActionEnum.SET_CURRENT_ROVER_PHOTOS,
+        payload: photos,
     }),
     setIsLoading: (isLoading: boolean): ISetIsLoadingAction => ({
         type: RoverActionEnum.SET_IS_LOADING,
@@ -54,4 +65,26 @@ export const roversActionCreators = {
         }
         dispatch(roversActionCreators.setIsLoading(false));
     },
+    getRoverPhotos:
+        (
+            name: string,
+            sol: number | string | Array<number | string>,
+            camera: string
+        ) =>
+        async (dispatch: AppDispatch) => {
+            try {
+                const rover = await getRoverPhotos(name, sol, camera);
+                dispatch(
+                    roversActionCreators.setCurrentRoverPhotos(
+                        rover.data.photos
+                    )
+                );
+            } catch (error) {
+                dispatch(
+                    roversActionCreators.setError(
+                        'Ohh... Something went wrong! Unable to download rover photos.'
+                    )
+                );
+            }
+        },
 };

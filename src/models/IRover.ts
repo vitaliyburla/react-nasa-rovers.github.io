@@ -14,3 +14,11 @@ export interface IRoverCamera {
     name: string;
     full_name: string;
 }
+
+export interface IRoverPhoto {
+    id: number;
+    sol: number;
+    camera: IRoverCamera;
+    img_src: string;
+    earth_date: string;
+}
