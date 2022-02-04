@@ -4,12 +4,14 @@ export interface IRoverState {
     rovers: IRover[];
     isLoading: boolean;
     error: string;
+    currentRover: IRover;
 }
 
 export enum RoverActionEnum {
     SET_ROVERS = 'SET_ROVERS',
     SET_IS_LOADING = 'SET_IS_LOADING',
     SET_ERROR = 'SET_ERROR',
+    SET_CURRENT_ROVER = 'SET_CURRENT_ROVER',
 }
 
 export interface ISetRoversAction {
@@ -27,7 +29,13 @@ export interface ISetErrorAction {
     payload: string;
 }
 
+export interface ISetCurrentRoverAction {
+    type: RoverActionEnum.SET_CURRENT_ROVER;
+    payload: IRover;
+}
+
 export type IRoverAction =
     | ISetRoversAction
     | ISetErrorAction
-    | ISetIsLoadingAction;
+    | ISetIsLoadingAction
+    | ISetCurrentRoverAction;

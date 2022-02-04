@@ -10,7 +10,7 @@ export interface IRover {
     cameras: IRoverCamera[];
 }
 
-interface IRoverCamera {
+export interface IRoverCamera {
     name: string;
     full_name: string;
 }

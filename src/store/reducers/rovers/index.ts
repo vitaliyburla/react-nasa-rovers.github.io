@@ -1,9 +1,11 @@
+import { IRover } from '../../../models/IRover';
 import { IRoverAction, IRoverState, RoverActionEnum } from './types';
 
 const initialState: IRoverState = {
     rovers: [],
     error: '',
     isLoading: false,
+    currentRover: {} as IRover,
 };
 
 const roverReducer = (
@@ -17,6 +19,8 @@ const roverReducer = (
             return { ...state, isLoading: action.payload };
         case RoverActionEnum.SET_ERROR:
             return { ...state, error: action.payload };
+        case RoverActionEnum.SET_CURRENT_ROVER:
+            return { ...state, currentRover: action.payload };
         default:
             return state;
     }

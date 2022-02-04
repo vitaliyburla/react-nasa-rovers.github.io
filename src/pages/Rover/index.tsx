@@ -1,9 +1,8 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { FC } from 'react';
+import RoverDetails from '../../components/RoverDetails';
 
-const RoverPage = () => {
-    const { name } = useParams<{ name?: string }>();
-    return <div>Rover {name}</div>;
+const RoverPage: FC = () => {
+    return <RoverDetails />;
 };
 
 export default RoverPage;

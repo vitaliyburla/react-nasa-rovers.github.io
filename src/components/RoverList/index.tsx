@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import RoverCard from '../RoverCard';
-import { Alert, AlertTitle, Container, Grid, Typography } from '@mui/material';
+import {
+    Alert,
+    AlertTitle,
+    CircularProgress,
+    Container,
+    Grid,
+    Typography,
+} from '@mui/material';
 import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
-const RoverList = () => {
+const RoverList: FC = () => {
     const { getAllRovers } = useActions();
-
     const { rovers, isLoading, error } = useTypedSelector(
         (store) => store.roverReducer
     );
@@ -15,19 +21,21 @@ const RoverList = () => {
         getAllRovers();
     }, []);
 
+    if (isLoading)
+        return (
+            <Grid container justifyContent="center">
+                <CircularProgress sx={{ p: 4 }} />
+            </Grid>
+        );
+    if (error)
+        return (
+            <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                {error}
+            </Alert>
+        );
     return (
         <Container maxWidth="lg">
-            {isLoading && (
-                <Grid container justifyContent="center">
-                    <Typography>Loading...</Typography>
-                </Grid>
-            )}
-            {error && (
-                <Alert severity="error">
-                    <AlertTitle>Error</AlertTitle>
-                    {error}
-                </Alert>
-            )}
             <Grid
                 container
                 rowSpacing={{ xs: 1, sm: 2, md: 3 }}
