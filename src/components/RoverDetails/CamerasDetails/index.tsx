@@ -1,10 +1,15 @@
-import { Container, Grid, Input, Slider, Typography } from '@mui/material';
+import {
+    Alert,
+    Container,
+    Grid,
+    Input,
+    Slider,
+    Typography,
+} from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
-import { getRoverPhotos } from '../../../api/RoverService';
 import { useActions } from '../../../hooks/useActions';
 import { useDebounce } from '../../../hooks/useDebouce';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { IRoverPhoto } from '../../../models/IRover';
 import { useStyles } from '../styles';
 import CameraCard from './CameraCard';
 import CameraPhotos from './CameraPhotos';
@@ -12,8 +17,12 @@ import CameraSlider from './CameraSlider';
 
 const CamerasDetails: FC = () => {
     const classes = useStyles();
-    const { getRoverPhotos, setCurrentRoverPhotos } = useActions();
+    const { setCurrentRoverPhotos, getRoverPhotos } = useActions();
     const { currentRover } = useTypedSelector((store) => store.roverReducer);
+
+    const { currentRoverPhotos } = useTypedSelector(
+        (store) => store.photoReducer
+    );
 
     const [sol, setSol] = React.useState<
         number | string | Array<number | string>
@@ -54,16 +63,18 @@ const CamerasDetails: FC = () => {
             {selectedCamera && (
                 <>
                     <Typography variant="h5" sx={{ pb: 2, pt: 5 }}>
-                        Sol:
+                        Sol: {debouncedSol}{' '}
+                        {currentRoverPhotos[0] &&
+                            `(${currentRoverPhotos[0].earth_date}) Total photos: ${currentRoverPhotos.length}`}
                     </Typography>
                     <CameraSlider
                         setValue={setSol}
                         value={sol}
                         maxValue={currentRover.max_sol}
                     />
+                    <CameraPhotos />
                 </>
             )}
-            <CameraPhotos />
         </Container>
     );
 };

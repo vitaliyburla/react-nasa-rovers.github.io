@@ -1,11 +1,25 @@
-import { ImageListItem, ImageList, Alert } from '@mui/material';
+import {
+    ImageListItem,
+    ImageList,
+    Alert,
+    CircularProgress,
+    Grid,
+} from '@mui/material';
 import React, { FC } from 'react';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 
 const CameraPhotos: FC = () => {
-    const { currentRoverPhotos } = useTypedSelector(
-        (store) => store.roverReducer
+    const { currentRoverPhotos, isLoading } = useTypedSelector(
+        (store) => store.photoReducer
     );
+
+    if (isLoading) {
+        return (
+            <Grid container justifyContent="center" sx={{ pt: 3 }}>
+                <CircularProgress />
+            </Grid>
+        );
+    }
 
     if (!currentRoverPhotos.length)
         return (
@@ -18,7 +32,7 @@ const CameraPhotos: FC = () => {
         <ImageList
             sx={{ width: '100%', height: 1000 }}
             variant="quilted"
-            cols={1}>
+            cols={currentRoverPhotos.length <= 2 ? 1 : 3}>
             {currentRoverPhotos.map((item) => (
                 <ImageListItem key={item.id} cols={1} rows={1}>
                     <img src={item.img_src} alt={item.img_src} loading="lazy" />

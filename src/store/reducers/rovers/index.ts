@@ -6,7 +6,6 @@ const initialState: IRoverState = {
     error: '',
     isLoading: false,
     currentRover: {} as IRover,
-    currentRoverPhotos: [] as IRoverPhoto[],
 };
 
 const roverReducer = (
@@ -22,10 +21,8 @@ const roverReducer = (
             return { ...state, error: action.payload };
         case RoverActionEnum.SET_CURRENT_ROVER:
             return { ...state, currentRover: action.payload };
-        case RoverActionEnum.SET_CURRENT_ROVER_PHOTOS:
-            return { ...state, currentRoverPhotos: action.payload };
         default:
-            return state;
+            return { ...state };
     }
 };
 

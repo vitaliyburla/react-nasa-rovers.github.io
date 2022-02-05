@@ -1,19 +1,17 @@
-import { IRover, IRoverPhoto } from '../../../models/IRover';
+import { IRover } from '../../../models/IRover';
 
 export interface IRoverState {
     rovers: IRover[];
     isLoading: boolean;
     error: string;
     currentRover: IRover;
-    currentRoverPhotos: IRoverPhoto[];
 }
 
 export enum RoverActionEnum {
     SET_ROVERS = 'SET_ROVERS',
-    SET_IS_LOADING = 'SET_IS_LOADING',
-    SET_ERROR = 'SET_ERROR',
+    SET_IS_LOADING = 'SET_ROVER_IS_LOADING',
+    SET_ERROR = 'SET_ROVER_ERROR',
     SET_CURRENT_ROVER = 'SET_CURRENT_ROVER',
-    SET_CURRENT_ROVER_PHOTOS = 'SET_CURRENT_ROVER_PHOTOS',
 }
 
 export interface ISetRoversAction {
@@ -36,14 +34,8 @@ export interface ISetCurrentRoverAction {
     payload: IRover;
 }
 
-export interface ISetCurrentRoverPhotosAction {
-    type: RoverActionEnum.SET_CURRENT_ROVER_PHOTOS;
-    payload: IRoverPhoto[];
-}
-
 export type IRoverAction =
     | ISetRoversAction
     | ISetErrorAction
     | ISetIsLoadingAction
-    | ISetCurrentRoverAction
-    | ISetCurrentRoverPhotosAction;
+    | ISetCurrentRoverAction;
