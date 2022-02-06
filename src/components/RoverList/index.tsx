@@ -6,7 +6,6 @@ import {
     CircularProgress,
     Container,
     Grid,
-    Typography,
 } from '@mui/material';
 import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';

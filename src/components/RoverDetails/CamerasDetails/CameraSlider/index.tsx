@@ -1,7 +1,5 @@
-import { Grid, Input, Slider, Typography } from '@mui/material';
-import React, { FC, useEffect } from 'react';
-import { useDebounce } from '../../../../hooks/useDebouce';
-import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import { Grid, Input, Slider } from '@mui/material';
+import React, { FC } from 'react';
 
 interface ICameraSliderProps {
     value: number | string | Array<number | string>;

@@ -1,22 +1,13 @@
-import {
-    Alert,
-    Container,
-    Grid,
-    Input,
-    Slider,
-    Typography,
-} from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import { useActions } from '../../../hooks/useActions';
 import { useDebounce } from '../../../hooks/useDebouce';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { useStyles } from '../styles';
 import CameraCard from './CameraCard';
 import CameraPhotos from './CameraPhotos';
 import CameraSlider from './CameraSlider';
 
 const CamerasDetails: FC = () => {
-    const classes = useStyles();
     const { setCurrentRoverPhotos, getRoverPhotos } = useActions();
     const { currentRover } = useTypedSelector((store) => store.roverReducer);
 
@@ -24,9 +15,9 @@ const CamerasDetails: FC = () => {
         (store) => store.photoReducer
     );
 
-    const [sol, setSol] = React.useState<
-        number | string | Array<number | string>
-    >(currentRover.max_sol);
+    const [sol, setSol] = useState<number | string | Array<number | string>>(
+        currentRover.max_sol
+    );
     const debouncedSol = useDebounce(sol, 500);
     const [selectedCamera, setSelectedCamera] = useState('');
 

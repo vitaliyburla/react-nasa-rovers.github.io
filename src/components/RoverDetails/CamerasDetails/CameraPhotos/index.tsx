@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import React, { FC } from 'react';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
+import CameraPhoto from './CameraPhoto';
 
 const CameraPhotos: FC = () => {
     const { currentRoverPhotos, isLoading } = useTypedSelector(
@@ -30,13 +31,11 @@ const CameraPhotos: FC = () => {
 
     return (
         <ImageList
-            sx={{ width: '100%', height: 1000 }}
+            sx={{ width: '100%', height: 'auto', maxHeight: 600 }}
             variant="quilted"
-            cols={currentRoverPhotos.length <= 2 ? 1 : 3}>
+            cols={3}>
             {currentRoverPhotos.map((item) => (
-                <ImageListItem key={item.id} cols={1} rows={1}>
-                    <img src={item.img_src} alt={item.img_src} loading="lazy" />
-                </ImageListItem>
+                <CameraPhoto img_src={item.img_src} key={item.id} />
             ))}
         </ImageList>
     );
