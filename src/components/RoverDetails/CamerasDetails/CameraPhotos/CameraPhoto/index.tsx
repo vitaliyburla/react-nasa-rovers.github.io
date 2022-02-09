@@ -1,12 +1,14 @@
 import { ImageListItem } from '@mui/material';
 import React, { FC, useState } from 'react';
 import ModalPhoto from '../../../../ModalPhoto';
+import { useStyles } from './styles';
 
 interface ICameraPhotoProps {
     img_src: string;
 }
 
 const CameraPhoto: FC<ICameraPhotoProps> = ({ img_src }) => {
+    const classes = useStyles();
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -21,7 +23,12 @@ const CameraPhoto: FC<ICameraPhotoProps> = ({ img_src }) => {
                 />
             )}
             <ImageListItem cols={1} onClick={handleOpen}>
-                <img src={img_src} alt={img_src} loading="lazy" />
+                <img
+                    className={classes.photo}
+                    src={img_src}
+                    alt={img_src}
+                    loading="lazy"
+                />
             </ImageListItem>
         </>
     );

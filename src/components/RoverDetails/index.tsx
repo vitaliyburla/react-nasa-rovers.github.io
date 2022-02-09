@@ -11,13 +11,11 @@ import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { IRover } from '../../models/IRover';
 import CamerasDetails from './CamerasDetails';
-import { useStyles } from './styles';
 
 const RoverDetails: FC = () => {
-    const classes = useStyles();
     const { name } = useParams<{ name: string }>();
     const { getRoverByName, setCurrentRover } = useActions();
-    const { currentRover, isLoading, error } = useTypedSelector(
+    const { isLoading, error } = useTypedSelector(
         (store) => store.roverReducer
     );
 

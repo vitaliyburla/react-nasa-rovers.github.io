@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import RoverCard from '../RoverCard';
+import RoverCard from './RoverCard';
 import {
     Alert,
     AlertTitle,

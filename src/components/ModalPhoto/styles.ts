@@ -1,5 +1,4 @@
 import { Theme } from '@mui/material';
-import { blueGrey, blue } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -8,6 +7,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        background: 'background.paper',
+        outline: '0',
+        '& img': {
+            width: '100%',
+            maxHeight: '100vh',
+        },
     },
 }));

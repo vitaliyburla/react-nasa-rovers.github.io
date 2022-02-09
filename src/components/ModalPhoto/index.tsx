@@ -1,5 +1,5 @@
-import { Box, Card, CardMedia, Modal, Typography } from '@mui/material';
-import React, { FC, useState } from 'react';
+import { Card, CardMedia, Modal } from '@mui/material';
+import React, { FC } from 'react';
 import { useStyles } from './styles';
 
 interface IModalPhotoProps {

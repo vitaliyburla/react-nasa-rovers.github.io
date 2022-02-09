@@ -4,9 +4,13 @@ import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
     cameraCard: {
-        background: theme.palette.secondary.light,
+        background: theme.palette.error.light,
         color: theme.palette.common.white,
         fontSize: 10,
+        '&:hover': {
+            cursor: 'pointer',
+            opacity: 0.8,
+        },
     },
     cameraCardActive: {
         background: theme.palette.success.light,

@@ -1,17 +1,20 @@
 import { Grid, Input, Slider } from '@mui/material';
 import React, { FC } from 'react';
+import { useStyles } from './styles';
 
-interface ICameraSliderProps {
+interface ICustomSliderProps {
     value: number | string | Array<number | string>;
     setValue: (value: number | string | Array<number | string>) => void;
     maxValue: number;
 }
 
-const CameraSlider: FC<ICameraSliderProps> = ({
+const CustomSlider: FC<ICustomSliderProps> = ({
     setValue,
     value,
     maxValue,
 }) => {
+    const classes = useStyles();
+
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue);
     };
@@ -30,6 +33,7 @@ const CameraSlider: FC<ICameraSliderProps> = ({
                     min={1}
                     max={maxValue}
                     step={1}
+                    className={classes.slider}
                 />
             </Grid>
             <Grid item>
@@ -50,4 +54,4 @@ const CameraSlider: FC<ICameraSliderProps> = ({
     );
 };
 
-export default CameraSlider;
+export default CustomSlider;

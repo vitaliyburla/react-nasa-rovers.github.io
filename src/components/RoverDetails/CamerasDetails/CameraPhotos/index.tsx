@@ -1,10 +1,4 @@
-import {
-    ImageListItem,
-    ImageList,
-    Alert,
-    CircularProgress,
-    Grid,
-} from '@mui/material';
+import { ImageList, Alert, CircularProgress, Grid } from '@mui/material';
 import React, { FC } from 'react';
 import { useTypedSelector } from '../../../../hooks/useTypedSelector';
 import CameraPhoto from './CameraPhoto';

@@ -5,12 +5,12 @@ import { useDebounce } from '../../../hooks/useDebouce';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import CameraCard from './CameraCard';
 import CameraPhotos from './CameraPhotos';
-import CameraSlider from './CameraSlider';
+import CustomSlider from '../../controls/Slider';
 
 const CamerasDetails: FC = () => {
     const { setCurrentRoverPhotos, getRoverPhotos } = useActions();
-    const { currentRover } = useTypedSelector((store) => store.roverReducer);
 
+    const { currentRover } = useTypedSelector((store) => store.roverReducer);
     const { currentRoverPhotos } = useTypedSelector(
         (store) => store.photoReducer
     );
@@ -18,13 +18,13 @@ const CamerasDetails: FC = () => {
     const [sol, setSol] = useState<number | string | Array<number | string>>(
         currentRover.max_sol
     );
+    const [selectedCamera, setSelectedCamera] = useState<string>('');
+
     const debouncedSol = useDebounce(sol, 500);
-    const [selectedCamera, setSelectedCamera] = useState('');
 
     useEffect(() => {
         if (selectedCamera && debouncedSol) {
             getRoverPhotos(currentRover.name, debouncedSol, selectedCamera);
-            console.log(selectedCamera, debouncedSol);
         }
         return () => {
             setCurrentRoverPhotos([]);
@@ -35,7 +35,7 @@ const CamerasDetails: FC = () => {
         <Container maxWidth="md">
             {currentRover.cameras && (
                 <>
-                    <Typography variant="h5" sx={{ pb: 2 }}>
+                    <Typography variant="subtitle1" sx={{ pb: 2 }}>
                         Cameras:
                     </Typography>
                     <Grid container spacing={2}>
@@ -53,12 +53,12 @@ const CamerasDetails: FC = () => {
             )}
             {selectedCamera && (
                 <>
-                    <Typography variant="h5" sx={{ pb: 2, pt: 5 }}>
-                        Sol: {debouncedSol}{' '}
+                    <Typography variant="subtitle1" sx={{ pb: 2, pt: 5 }}>
+                        Sol: <strong>{debouncedSol}</strong>{' '}
                         {currentRoverPhotos[0] &&
                             `(${currentRoverPhotos[0].earth_date}) Total photos: ${currentRoverPhotos.length}`}
                     </Typography>
-                    <CameraSlider
+                    <CustomSlider
                         setValue={setSol}
                         value={sol}
                         maxValue={currentRover.max_sol}
