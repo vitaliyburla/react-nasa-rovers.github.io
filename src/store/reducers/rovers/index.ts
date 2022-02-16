@@ -1,4 +1,4 @@
-import { IRover, IRoverPhoto } from '../../../models/IRover';
+import { IRover } from '../../../models/IRover';
 import { IRoverAction, IRoverState, RoverActionEnum } from './types';
 
 const initialState: IRoverState = {

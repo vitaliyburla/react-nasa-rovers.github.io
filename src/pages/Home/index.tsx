@@ -1,12 +1,4 @@
-import {
-    Box,
-    Button,
-    Chip,
-    Container,
-    Divider,
-    Stack,
-    Typography,
-} from '@mui/material';
+import { Container, Divider, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import RoverList from '../../components/RoverList';
 
@@ -16,7 +8,6 @@ const Home: FC = () => {
             <Container
                 maxWidth="sm"
                 sx={{
-                    pt: 8,
                     pb: 4,
                 }}>
                 <Typography
