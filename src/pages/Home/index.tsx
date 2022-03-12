@@ -1,34 +1,13 @@
-import { Container, Divider, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import React, { FC } from 'react';
-import RoverList from '../../components/RoverList';
+import HomeNavigation from '../../components/HomeNavigation';
 
 const Home: FC = () => {
     return (
         <>
-            <Container
-                maxWidth="sm"
-                sx={{
-                    pb: 4,
-                }}>
-                <Typography
-                    component="h1"
-                    variant="h2"
-                    align="center"
-                    color="text.primary"
-                    gutterBottom>
-                    Rovers
-                </Typography>
-                <Typography
-                    variant="h5"
-                    align="center"
-                    color="text.secondary"
-                    paragraph>
-                    Here you can find up-to-date information from the NASA
-                    rovers
-                </Typography>
-                <Divider />
+            <Container maxWidth="xs">
+                <HomeNavigation />
             </Container>
-            <RoverList />
         </>
     );
 };

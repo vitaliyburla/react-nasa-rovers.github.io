@@ -13,7 +13,7 @@ const AppRouter = () => {
                     exact={route.exact}
                 />
             ))}
-            <Redirect to={RouteNames.HOME} />
+            <Redirect to={RouteNames.ROVERS} />
         </Switch>
     );
 };

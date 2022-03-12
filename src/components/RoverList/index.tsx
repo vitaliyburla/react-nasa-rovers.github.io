@@ -11,13 +11,16 @@ import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const RoverList: FC = () => {
-    const { getAllRovers } = useActions();
+    const { getAllRovers, setRovers } = useActions();
     const { rovers, isLoading, error } = useTypedSelector(
         (store) => store.roverReducer
     );
 
     useEffect(() => {
         getAllRovers();
+        return () => {
+            setRovers([]);
+        };
     }, []);
 
     if (isLoading)

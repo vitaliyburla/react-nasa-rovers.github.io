@@ -7,10 +7,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        outline: '0',
+        outline: 'none',
         '& img': {
-            width: '100%',
-            maxHeight: '100vh',
+            width: 'auto',
+            height: 'auto',
+            maxHeight: '95vh',
+            maxWidth: '95vw',
         },
     },
 }));
