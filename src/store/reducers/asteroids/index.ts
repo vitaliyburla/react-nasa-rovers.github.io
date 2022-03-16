@@ -1,7 +1,8 @@
+import { IAsteroidsData } from '../../../models/IAsteroid';
 import { AsteroidActionEnum, IAsteroidAction, IAsteroidState } from './types';
 
 const initialState: IAsteroidState = {
-    asteroids: [],
+    asteroids: {} as IAsteroidsData,
     isLoading: false,
     error: '',
 };

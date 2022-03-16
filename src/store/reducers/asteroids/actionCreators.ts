@@ -1,6 +1,6 @@
 import { AppDispatch } from '../..';
 import { getAsteroids } from '../../../api/AsteroidsService';
-import { IAsteroid } from '../../../models/IAsteroid';
+import { IAsteroidsData } from '../../../models/IAsteroid';
 import {
     AsteroidActionEnum,
     ISetAsteroidsAction,
@@ -9,7 +9,7 @@ import {
 } from './types';
 
 export const asteroidActionCreators = {
-    setAsteroids: (asteroids: IAsteroid[]): ISetAsteroidsAction => ({
+    setAsteroids: (asteroids: IAsteroidsData): ISetAsteroidsAction => ({
         type: AsteroidActionEnum.SET_ASTEROIDS,
         payload: asteroids,
     }),
@@ -25,11 +25,7 @@ export const asteroidActionCreators = {
         dispatch(asteroidActionCreators.setIsLoading(true));
         try {
             const asteroids = await getAsteroids(page);
-            dispatch(
-                asteroidActionCreators.setAsteroids(
-                    asteroids.data.near_earth_objects
-                )
-            );
+            dispatch(asteroidActionCreators.setAsteroids(asteroids.data));
         } catch (error) {
             dispatch(
                 asteroidActionCreators.setError(

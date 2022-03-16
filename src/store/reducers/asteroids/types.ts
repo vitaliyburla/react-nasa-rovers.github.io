@@ -1,7 +1,7 @@
-import { IAsteroid } from '../../../models/IAsteroid';
+import { IAsteroidsData } from '../../../models/IAsteroid';
 
 export interface IAsteroidState {
-    asteroids: IAsteroid[];
+    asteroids: IAsteroidsData;
     isLoading: boolean;
     error: string;
 }
@@ -14,7 +14,7 @@ export enum AsteroidActionEnum {
 
 export interface ISetAsteroidsAction {
     type: AsteroidActionEnum.SET_ASTEROIDS;
-    payload: IAsteroid[];
+    payload: IAsteroidsData;
 }
 
 export interface ISetIsLoadingAction {

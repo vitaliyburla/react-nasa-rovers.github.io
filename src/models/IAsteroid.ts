@@ -1,4 +1,19 @@
-export interface IAsteroid {
+export interface IAsteroidsData {
+    links: {
+        next: string;
+        prev?: string;
+        self: string;
+    };
+    page: {
+        size: number;
+        total_elements: number;
+        total_pages: number;
+        number: number;
+    };
+    near_earth_objects: IAsteroid[];
+}
+
+interface IAsteroid {
     id: number;
     name: string;
     name_limited: string;

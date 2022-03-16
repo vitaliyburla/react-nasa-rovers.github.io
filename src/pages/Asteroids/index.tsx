@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PageHeader from '../../components/common/PageHeader';
+import { useActions } from '../../hooks/useActions';
+import { IAsteroidsData } from '../../models/IAsteroid';
 
 const Asteroids = () => {
+    const { getAsteroidsByPage, setAsteroids } = useActions();
+
+    useEffect(() => {
+        getAsteroidsByPage(0);
+        return () => {
+            setAsteroids({} as IAsteroidsData);
+        };
+    }, []);
+
     return (
         <PageHeader
             title="Asteroids"
