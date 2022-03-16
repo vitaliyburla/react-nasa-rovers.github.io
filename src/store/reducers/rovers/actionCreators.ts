@@ -27,8 +27,8 @@ export const roversActionCreators = {
         payload: error,
     }),
     getAllRovers: () => async (dispatch: AppDispatch) => {
+        dispatch(roversActionCreators.setIsLoading(true));
         try {
-            dispatch(roversActionCreators.setIsLoading(true));
             const rovers = await getRovers();
             dispatch(roversActionCreators.setRovers(rovers.data.rovers));
         } catch (error) {
@@ -41,8 +41,8 @@ export const roversActionCreators = {
         dispatch(roversActionCreators.setIsLoading(false));
     },
     getRoverByName: (name: string) => async (dispatch: AppDispatch) => {
+        dispatch(roversActionCreators.setIsLoading(true));
         try {
-            dispatch(roversActionCreators.setIsLoading(true));
             const rover = await getRoverByName(name);
             dispatch(roversActionCreators.setCurrentRover(rover.data.rover));
         } catch (error) {

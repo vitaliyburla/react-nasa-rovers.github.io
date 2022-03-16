@@ -5,7 +5,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     navListItem: {
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 2rem',
         color: theme.palette.primary.dark,
         '&:hover': {
             '& span': {
