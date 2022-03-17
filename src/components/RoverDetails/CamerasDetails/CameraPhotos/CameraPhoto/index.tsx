@@ -1,6 +1,6 @@
 import { ImageListItem } from '@mui/material';
 import React, { FC, useState } from 'react';
-import ModalPhoto from '../../../../ModalPhoto';
+import ModalPhoto from '../../../../common/ModalPhoto';
 import { useStyles } from './styles';
 
 interface ICameraPhotoProps {

@@ -13,26 +13,27 @@ export interface IAsteroidsData {
     near_earth_objects: IAsteroid[];
 }
 
-interface IAsteroid {
+export interface IAsteroid {
     id: number;
     name: string;
     name_limited: string;
     designation: number;
-    estimated_diameter: {
-        kilometers: {
-            estimated_diameter_min: number;
-            estimated_diameter_max: number;
-        };
-        miles: {
-            estimated_diameter_min: number;
-            estimated_diameter_max: number;
-        };
-    };
+    estimated_diameter: IAsteroidDiameter;
     is_potentially_hazardous_asteroid: boolean;
     close_approach_data: ICloseApproachData[];
 }
 
-interface ICloseApproachData {
+export interface IAsteroidDiameter {
+    kilometers: IAsteroidDiameterValues;
+    miles: IAsteroidDiameterValues;
+}
+
+export interface IAsteroidDiameterValues {
+    estimated_diameter_min: number;
+    estimated_diameter_max: number;
+}
+
+export interface ICloseApproachData {
     close_approach_date: string;
     close_approach_date_full: string;
     relative_velocity: {
