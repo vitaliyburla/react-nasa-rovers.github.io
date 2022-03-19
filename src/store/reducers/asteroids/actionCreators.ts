@@ -21,18 +21,19 @@ export const asteroidActionCreators = {
         type: AsteroidActionEnum.SET_ERROR,
         payload: error,
     }),
-    getAsteroidsByPage: (page: number) => async (dispatch: AppDispatch) => {
-        dispatch(asteroidActionCreators.setIsLoading(true));
-        try {
-            const asteroids = await getAsteroids(page);
-            dispatch(asteroidActionCreators.setAsteroids(asteroids.data));
-        } catch (error) {
-            dispatch(
-                asteroidActionCreators.setError(
-                    'Ohh... Something went wrong! Unable to download asteroids data.'
-                )
-            );
-        }
-        dispatch(asteroidActionCreators.setIsLoading(false));
-    },
+    getAsteroidsByPage:
+        (page: number, size?: number) => async (dispatch: AppDispatch) => {
+            dispatch(asteroidActionCreators.setIsLoading(true));
+            try {
+                const asteroids = await getAsteroids(page, size);
+                dispatch(asteroidActionCreators.setAsteroids(asteroids.data));
+            } catch (error) {
+                dispatch(
+                    asteroidActionCreators.setError(
+                        'Ohh... Something went wrong! Unable to download asteroids data.'
+                    )
+                );
+            }
+            dispatch(asteroidActionCreators.setIsLoading(false));
+        },
 };

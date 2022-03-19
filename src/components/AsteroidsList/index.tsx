@@ -6,26 +6,19 @@ import {
     TableRow,
     TableCell,
     TableBody,
-    Box,
-    Collapse,
-    IconButton,
-    Typography,
     Container,
     Alert,
     AlertTitle,
     CircularProgress,
     Grid,
+    TablePagination,
+    Skeleton,
 } from '@mui/material';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useActions } from '../../hooks/useActions';
-import {
-    IAsteroid,
-    IAsteroidDiameter,
-    IAsteroidsData,
-} from '../../models/IAsteroid';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { IAsteroidsData } from '../../models/IAsteroid';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import Row, { SkeletonRow } from './Row';
 
 const AsteroidsList: FC = () => {
     const { getAsteroidsByPage, setAsteroids } = useActions();
@@ -33,19 +26,31 @@ const AsteroidsList: FC = () => {
         (store) => store.asteroidsReducer
     );
 
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number
+    ) => {
+        setPage(newPage);
+        getAsteroidsByPage(newPage, rowsPerPage);
+    };
+
+    const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        getAsteroidsByPage(page, parseInt(event.target.value, 10));
+    };
+
     useEffect(() => {
-        getAsteroidsByPage(0);
+        getAsteroidsByPage(page, rowsPerPage);
         return () => {
             setAsteroids({} as IAsteroidsData);
         };
     }, []);
 
-    if (isLoading)
-        return (
-            <Grid container justifyContent="center">
-                <CircularProgress sx={{ p: 4 }} />
-            </Grid>
-        );
     if (error)
         return (
             <Alert severity="error">
@@ -54,112 +59,17 @@ const AsteroidsList: FC = () => {
             </Alert>
         );
 
-    function Row(props: { row: IAsteroid }) {
-        const { row } = props;
-        const [open, setOpen] = React.useState(false);
-
-        return (
-            <>
-                <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                    <TableCell>
-                        <IconButton
-                            aria-label="expand row"
-                            size="small"
-                            onClick={() => setOpen(!open)}>
-                            {open ? (
-                                <KeyboardArrowUpIcon />
-                            ) : (
-                                <KeyboardArrowDownIcon />
-                            )}
-                        </IconButton>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                        {row.name}
-                    </TableCell>
-                    <TableCell align="right">
-                        {
-                            row.estimated_diameter.kilometers
-                                .estimated_diameter_min
-                        }
-                        -
-                        {
-                            row.estimated_diameter.kilometers
-                                .estimated_diameter_max
-                        }
-                    </TableCell>
-                    <TableCell align="right">
-                        {row.is_potentially_hazardous_asteroid ? 'Yes' : 'No'}
-                    </TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell
-                        style={{ paddingBottom: 0, paddingTop: 0 }}
-                        colSpan={6}>
-                        <Collapse in={open} timeout="auto" unmountOnExit>
-                            <Box sx={{ margin: 1 }}>
-                                <Typography
-                                    variant="h6"
-                                    gutterBottom
-                                    component="div">
-                                    Close approaches
-                                </Typography>
-                                <Table size="small" aria-label="purchases">
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Date</TableCell>
-                                            <TableCell>Miss distance</TableCell>
-                                            <TableCell>Velocity</TableCell>
-                                            <TableCell>Orbiting body</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {row.close_approach_data.map(
-                                            (historyRow) => (
-                                                <TableRow
-                                                    key={
-                                                        historyRow.close_approach_date
-                                                    }>
-                                                    <TableCell>
-                                                        {
-                                                            historyRow.close_approach_date
-                                                        }
-                                                    </TableCell>
-                                                    <TableCell
-                                                        component="th"
-                                                        scope="row">
-                                                        {
-                                                            historyRow
-                                                                .miss_distance
-                                                                .kilometers
-                                                        }
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {
-                                                            historyRow
-                                                                .relative_velocity
-                                                                .kilometers_per_hour
-                                                        }
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        {
-                                                            historyRow.orbiting_body
-                                                        }
-                                                    </TableCell>
-                                                </TableRow>
-                                            )
-                                        )}
-                                    </TableBody>
-                                </Table>
-                            </Box>
-                        </Collapse>
-                    </TableCell>
-                </TableRow>
-            </>
-        );
-    }
-
     return (
         <Container maxWidth="md">
+            <TablePagination
+                component="div"
+                count={asteroids?.page?.total_pages | 0}
+                page={page}
+                onPageChange={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                rowsPerPageOptions={[5, 10, 15, 20]}
+            />
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                     <TableHead>
@@ -167,15 +77,19 @@ const AsteroidsList: FC = () => {
                             <TableCell />
                             <TableCell>Name</TableCell>
                             <TableCell align="right">
-                                Diameter&nbsp;(km)
+                                Estimated&nbsp;diameter&nbsp;(km)
                             </TableCell>
                             <TableCell align="right">Hazardous</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {asteroids?.near_earth_objects?.map((asteroid) => (
-                            <Row key={asteroid.id} row={asteroid} />
-                        ))}
+                        {isLoading
+                            ? [...Array(rowsPerPage)].map((e, i) => (
+                                  <SkeletonRow key={i} />
+                              ))
+                            : asteroids?.near_earth_objects?.map((asteroid) => (
+                                  <Row key={asteroid.id} row={asteroid} />
+                              ))}
                     </TableBody>
                 </Table>
             </TableContainer>
