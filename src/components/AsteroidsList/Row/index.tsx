@@ -42,14 +42,15 @@ const Row: FC<IRowProps> = ({ row }) => {
                 );
             case 'miss_distance':
                 return closeApproach.sort((a, b) =>
-                    b.miss_distance.kilometers > a.miss_distance.kilometers
+                    parseInt(b.miss_distance.kilometers) >
+                    parseInt(a.miss_distance.kilometers)
                         ? 1
                         : -1
                 );
             case 'velocity':
                 return closeApproach.sort((a, b) =>
-                    b.relative_velocity.kilometers_per_hour >
-                    a.relative_velocity.kilometers_per_hour
+                    parseInt(b.relative_velocity.kilometers_per_hour) >
+                    parseInt(a.relative_velocity.kilometers_per_hour)
                         ? 1
                         : -1
                 );
