@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://www.neowsapp.com/rest/v1',
+    baseURL: 'https://www.neowsapp.com/rest/v1',
     params: {
         api_key: process.env.REACT_APP_NASA_API_KEY,
     },

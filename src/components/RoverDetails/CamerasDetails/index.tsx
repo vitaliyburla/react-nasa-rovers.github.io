@@ -40,7 +40,7 @@ const CamerasDetails: FC = () => {
                     </Typography>
                     <Grid container spacing={2}>
                         {currentRover.cameras?.map((cam, index) => (
-                            <Grid key={index} item xs={6} sm={4} md={2}>
+                            <Grid key={index} item xs={12} sm={6} md={4}>
                                 <CameraCard
                                     camera={cam}
                                     selectedCamera={selectedCamera}
