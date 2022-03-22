@@ -34,10 +34,12 @@ const RoverDetails: FC = () => {
         );
     if (error)
         return (
-            <Alert severity="error">
-                <AlertTitle>Error</AlertTitle>
-                {error}
-            </Alert>
+            <Container maxWidth="lg">
+                <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    {error}
+                </Alert>
+            </Container>
         );
 
     return (
