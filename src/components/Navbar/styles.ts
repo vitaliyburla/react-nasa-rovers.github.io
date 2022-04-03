@@ -1,20 +1,21 @@
 import { Theme } from '@mui/material';
-import { blueGrey } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles((theme: Theme) => ({
-    homeLink: {
-        color: theme.palette.primary.dark,
+    link: {
+        color: theme.palette.primary.main,
         textDecoration: 'none',
+        transition: 'color 0.1s ease-in-out',
         '&:hover': {
-            color: theme.palette.primary.main,
+            color: theme.palette.primary.dark,
         },
     },
     navbar: {
-        background: `linear-gradient(45deg, ${blueGrey[100]} 50%, ${blueGrey[50]} 100% )`,
-        boxShadow: theme.shadows[1],
-        paddingTop: '0.5rem',
-        paddingBottom: '0.5rem',
-        marginBottom: '2rem',
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        position: 'fixed',
+        top: 0,
+        backdropFilter: 'blur(5px)',
+        '-webkit-backdrop-filter': 'blur(5px)',
     },
 }));

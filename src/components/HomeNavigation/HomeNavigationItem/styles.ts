@@ -4,17 +4,17 @@ import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme: Theme) => ({
     navListItem: {
         alignItems: 'center',
-        justifyContent: 'center',
-        color: theme.palette.primary.dark,
-        '&:hover': {
-            '& span': {
-                color: theme.palette.secondary.light,
-            },
-            color: theme.palette.primary.light,
+        color: theme.palette.primary.main,
+        transition: 'color 0.1s ease-in-out',
+        '& svg': {
+            transition: 'margin 0.1s ease-in-out',
         },
-    },
-    navListItemAvatar: {
-        margin: '0 1rem',
+        '&:hover': {
+            color: theme.palette.primary.dark,
+            '& svg': {
+                marginLeft: '2rem',
+            },
+        },
     },
     navLink: {
         textDecoration: 'none',
