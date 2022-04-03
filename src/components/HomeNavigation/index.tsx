@@ -7,11 +7,22 @@ import { RouteNames } from '../../routes';
 import { useStyles } from './styles';
 import { Container } from '@mui/material';
 import Marquee from 'react-fast-marquee';
+import photo from '../../assets/images/mars-main.png';
 
 const HomeNavigation: FC = () => {
     const classes = useStyles();
     return (
-        <Container maxWidth="xl" sx={{ paddingTop: '10rem' }}>
+        <Container
+            maxWidth="xl"
+            sx={{
+                marginTop: '6rem',
+                position: 'relative',
+            }}>
+            <Box
+                component="img"
+                src="/assets/images/mars-main.png"
+                className={classes.mainPhoto}
+            />
             <Typography variant={'h1'} className={classes.header}>
                 let’s explore space
             </Typography>

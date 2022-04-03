@@ -14,6 +14,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     marqueeBox: {
         marginTop: '12rem',
-        //bottom: 0,
+    },
+    mainPhoto: {
+        position: 'absolute',
+        zIndex: '-100',
+        right: '0',
+        top: '-5rem',
+        maxHeight: '43rem',
     },
 }));

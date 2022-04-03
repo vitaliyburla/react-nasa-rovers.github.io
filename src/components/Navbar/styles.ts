@@ -13,7 +13,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     navbar: {
         paddingTop: '1rem',
         paddingBottom: '1rem',
-        position: 'fixed',
+        position: 'sticky',
+        zIndex: '10',
         top: 0,
         backdropFilter: 'blur(5px)',
         '-webkit-backdrop-filter': 'blur(5px)',
