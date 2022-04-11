@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import { useActions } from '../../../hooks/useActions';
 import { useDebounce } from '../../../hooks/useDebouce';
@@ -6,8 +6,10 @@ import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import CameraCard from './CameraCard';
 import CameraPhotos from './CameraPhotos';
 import CustomSlider from '../../controls/Slider';
+import { useStyles } from './styles';
 
 const CamerasDetails: FC = () => {
+    const classes = useStyles();
     const { setCurrentRoverPhotos, getRoverPhotos } = useActions();
 
     const { currentRover } = useTypedSelector((store) => store.roverReducer);
@@ -20,7 +22,7 @@ const CamerasDetails: FC = () => {
     );
     const [selectedCamera, setSelectedCamera] = useState<string>('');
 
-    const debouncedSol = useDebounce(sol, 500);
+    const debouncedSol = useDebounce(sol, 300);
 
     useEffect(() => {
         if (selectedCamera && debouncedSol) {
@@ -32,15 +34,12 @@ const CamerasDetails: FC = () => {
     }, [selectedCamera, debouncedSol]);
 
     return (
-        <Container maxWidth="md">
+        <>
             {currentRover.cameras && (
-                <>
-                    <Typography variant="subtitle1" sx={{ pb: 2 }}>
-                        Cameras:
-                    </Typography>
+                <Box className={classes.cameraCardsWrapper}>
                     <Grid container spacing={2}>
                         {currentRover.cameras?.map((cam, index) => (
-                            <Grid key={index} item xs={12} sm={6} md={4}>
+                            <Grid key={index} item xs={12} sm={6}>
                                 <CameraCard
                                     camera={cam}
                                     selectedCamera={selectedCamera}
@@ -49,24 +48,36 @@ const CamerasDetails: FC = () => {
                             </Grid>
                         ))}
                     </Grid>
-                </>
+                </Box>
             )}
             {selectedCamera && (
                 <>
-                    <Typography variant="subtitle1" sx={{ pb: 2, pt: 5 }}>
-                        Sol: <strong>{debouncedSol}</strong>{' '}
-                        {currentRoverPhotos[0] &&
-                            `(${currentRoverPhotos[0].earth_date}) Total photos: ${currentRoverPhotos.length}`}
-                    </Typography>
-                    <CustomSlider
-                        setValue={setSol}
-                        value={sol}
-                        maxValue={currentRover.max_sol}
-                    />
+                    <Box className={classes.sliderWrapper}>
+                        <Typography
+                            variant="body1"
+                            className={classes.sliderText}>
+                            Sol: <span>{sol}</span>&nbsp;
+                            {currentRoverPhotos[0] && (
+                                <>
+                                    (
+                                    <span>
+                                        {currentRoverPhotos[0].earth_date}
+                                    </span>
+                                    )&nbsp;Total photos:&nbsp;
+                                    <span>{currentRoverPhotos.length}</span>
+                                </>
+                            )}
+                        </Typography>
+                        <CustomSlider
+                            setValue={setSol}
+                            value={sol}
+                            maxValue={currentRover.max_sol}
+                        />
+                    </Box>
                     <CameraPhotos />
                 </>
             )}
-        </Container>
+        </>
     );
 };
 

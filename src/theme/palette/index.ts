@@ -6,7 +6,7 @@ const palette = {
         main: '#BBBBBB',
     },
     background: {
-        default: '#141414',
+        default: '#111111',
     },
     success: {
         main: '#83D382',

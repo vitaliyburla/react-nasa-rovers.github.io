@@ -6,8 +6,8 @@ const Asteroids: FC = () => {
     return (
         <>
             <PageHeader
-                title="Asteroids"
-                subtitle="Here you can find information about asteroids around the Earth"
+                title="asteroids"
+                subtitle="here you can find information about asteroids around the Earth"
             />
             <AsteroidsList />
         </>

@@ -1,4 +1,10 @@
-import { Card, CardActionArea, CardContent, Typography } from '@mui/material';
+import {
+    Box,
+    Card,
+    CardActionArea,
+    CardContent,
+    Typography,
+} from '@mui/material';
 import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from './styles';
@@ -26,39 +32,57 @@ const RoverCard: FC<IRoverCardProps> = ({
     const openRover = () => history.push(`/rovers/${name.toLowerCase()}`);
 
     return (
-        <Card sx={{ minWidth: 275 }} className={classes.card}>
-            <CardActionArea onClick={openRover}>
-                <CardContent>
+        <Box className={classes.card} onClick={openRover}>
+            <Box className={classes.cardContent}>
+                <Typography
+                    className={
+                        status === 'active'
+                            ? classes.statusActive
+                            : classes.status
+                    }
+                    variant="body2">
+                    {status}
+                </Typography>
+                <Typography variant="subtitle2">{name}</Typography>
+                <Typography variant="body1">
+                    landed:
                     <Typography
-                        sx={{ fontSize: 14 }}
-                        className={
-                            status === 'active'
-                                ? classes.statusActive
-                                : classes.status
-                        }
-                        gutterBottom>
-                        {status}
+                        component={'span'}
+                        className={classes.secondaryLabel}
+                        variant="body1">
+                        &nbsp;{landing_date}
                     </Typography>
-                    <Typography variant="h5" className={classes.nameLabel}>
-                        {name}
+                </Typography>
+                <Typography variant="body1">
+                    <Typography
+                        component={'span'}
+                        className={classes.secondaryLabel}
+                        variant="body1">
+                        {total_photos}&nbsp;
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        Landed: {landing_date}
+                    total photos
+                </Typography>
+                <Typography variant="body2">
+                    last photo
+                    <Typography
+                        component={'span'}
+                        className={classes.secondaryLabel}
+                        variant="body2">
+                        &nbsp;{max_date}
                     </Typography>
-                    <Typography variant="body1">
-                        <Typography
-                            component={'span'}
-                            className={classes.totalPhotosLabel}>
-                            {total_photos}
-                        </Typography>{' '}
-                        total photos
+                </Typography>
+                <Typography variant="body2">
+                    (
+                    <Typography
+                        component={'span'}
+                        className={classes.secondaryLabel}
+                        variant="body2">
+                        {max_sol}&nbsp;
                     </Typography>
-                    <Typography variant="body2">
-                        Last photo {max_date} ({max_sol} sol)
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+                    sol)
+                </Typography>
+            </Box>
+        </Box>
     );
 };
 

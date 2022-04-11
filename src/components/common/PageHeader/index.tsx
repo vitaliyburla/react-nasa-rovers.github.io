@@ -1,5 +1,6 @@
-import { Container, Divider, Typography } from '@mui/material';
+import { Box, Container, Divider, Typography } from '@mui/material';
 import React, { FC } from 'react';
+import { useStyles } from './styles';
 
 interface IPageHeaderProps {
     title: string;
@@ -7,29 +8,16 @@ interface IPageHeaderProps {
 }
 
 const PageHeader: FC<IPageHeaderProps> = ({ title, subtitle }) => {
+    const classes = useStyles();
     return (
-        <Container
-            maxWidth="sm"
-            sx={{
-                pb: 4,
-            }}>
-            <Typography
-                component="h1"
-                variant="h2"
-                align="center"
-                color="text.primary"
-                gutterBottom>
+        <Box className={classes.headerWrapper}>
+            <Typography className={classes.title} variant="h2">
                 {title}
             </Typography>
-            <Typography
-                variant="h5"
-                align="center"
-                color="text.secondary"
-                paragraph>
+            <Typography className={classes.subtitle} variant="body1">
                 {subtitle}
             </Typography>
-            <Divider />
-        </Container>
+        </Box>
     );
 };
 

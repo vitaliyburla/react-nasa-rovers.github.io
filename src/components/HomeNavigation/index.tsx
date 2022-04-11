@@ -12,12 +12,7 @@ import photo from '../../assets/images/mars-main.png';
 const HomeNavigation: FC = () => {
     const classes = useStyles();
     return (
-        <Container
-            maxWidth="xl"
-            sx={{
-                marginTop: '6rem',
-                position: 'relative',
-            }}>
+        <>
             <Box
                 component="img"
                 src="/assets/images/mars-main.png"
@@ -45,7 +40,7 @@ const HomeNavigation: FC = () => {
                     </Typography>
                 </Marquee>
             </Box>
-        </Container>
+        </>
     );
 };
 

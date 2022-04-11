@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         textDecoration: 'none',
         transition: 'color 0.1s ease-in-out',
         '&:hover': {
-            color: theme.palette.primary.dark,
+            color: theme.palette.secondary.main,
         },
     },
     navbar: {

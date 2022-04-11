@@ -1,6 +1,8 @@
-import { Grid, Input, Slider } from '@mui/material';
+import { Grid, IconButton, Input, InputAdornment, Slider } from '@mui/material';
 import React, { FC } from 'react';
 import { useStyles } from './styles';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 interface ICustomSliderProps {
     value: number | string | Array<number | string>;
@@ -19,12 +21,12 @@ const CustomSlider: FC<ICustomSliderProps> = ({
         setValue(newValue);
     };
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value === '' ? '' : Number(event.target.value));
-    };
-
     return (
-        <Grid container spacing={2} alignItems="center">
+        <Grid
+            container
+            columnSpacing={{ xs: 2 }}
+            alignItems="center"
+            className={classes.sliderContainer}>
             <Grid item xs>
                 <Slider
                     value={typeof value === 'number' ? value : 0}
@@ -37,18 +39,18 @@ const CustomSlider: FC<ICustomSliderProps> = ({
                 />
             </Grid>
             <Grid item>
-                <Input
-                    value={value}
-                    size="small"
-                    onChange={handleInputChange}
-                    inputProps={{
-                        step: 1,
-                        min: 1,
-                        max: maxValue,
-                        type: 'number',
-                        'aria-labelledby': 'input-slider',
-                    }}
-                />
+                <IconButton
+                    aria-label="back"
+                    color="primary"
+                    onClick={() => setValue(+value - 1)}>
+                    <ArrowBackIosIcon />
+                </IconButton>
+                <IconButton
+                    aria-label="forward"
+                    color="primary"
+                    onClick={() => setValue(+value + 1)}>
+                    <ArrowForwardIosIcon />
+                </IconButton>
             </Grid>
         </Grid>
     );

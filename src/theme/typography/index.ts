@@ -16,6 +16,9 @@ const typography = {
     subtitle1: {
         fontSize: pxToRem(32),
     },
+    subtitle2: {
+        fontSize: pxToRem(24),
+    },
     body1: {
         fontSize: pxToRem(20),
     },
