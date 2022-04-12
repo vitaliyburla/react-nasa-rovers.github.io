@@ -18,6 +18,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
         backdropFilter: 'blur(5px)',
         boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
     },
+    cardSkeleton: {
+        width: '25rem',
+        height: '10rem',
+        borderRadius: '0.5rem',
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+    },
     cardContent: {
         padding: '1rem',
         color: theme.palette.primary.main,

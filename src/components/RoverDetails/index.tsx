@@ -29,7 +29,7 @@ const RoverDetails: FC = () => {
 
     if (isLoading)
         return (
-            <Grid container justifyContent="center">
+            <Grid container justifyContent="center" sx={{ mt: '5rem' }}>
                 <CircularProgress />
             </Grid>
         );

@@ -3,6 +3,7 @@ import {
     Card,
     CardActionArea,
     CardContent,
+    Skeleton,
     Typography,
 } from '@mui/material';
 import React, { FC } from 'react';
@@ -81,6 +82,34 @@ const RoverCard: FC<IRoverCardProps> = ({
                     </Typography>
                     sol)
                 </Typography>
+            </Box>
+        </Box>
+    );
+};
+
+export const RoverCardSkeleton = () => {
+    const classes = useStyles();
+    return (
+        <Box className={classes.card}>
+            <Box className={classes.cardContent}>
+                <Skeleton
+                    sx={{ width: '30%', height: '1.5rem', bgcolor: 'grey.800' }}
+                />
+                <Skeleton
+                    sx={{ width: '50%', height: '3rem', bgcolor: 'grey.800' }}
+                />
+                <Skeleton
+                    sx={{ width: '75%', height: '2rem', bgcolor: 'grey.800' }}
+                />
+                <Skeleton
+                    sx={{ width: '70%', height: '2rem', bgcolor: 'grey.800' }}
+                />
+                <Skeleton
+                    sx={{ width: '60%', height: '1.5rem', bgcolor: 'grey.800' }}
+                />
+                <Skeleton
+                    sx={{ width: '30%', height: '1.5rem', bgcolor: 'grey.800' }}
+                />
             </Box>
         </Box>
     );

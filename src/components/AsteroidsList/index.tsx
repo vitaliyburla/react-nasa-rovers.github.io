@@ -9,18 +9,17 @@ import {
     Container,
     Alert,
     AlertTitle,
-    CircularProgress,
-    Grid,
     TablePagination,
-    Skeleton,
 } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
 import { useActions } from '../../hooks/useActions';
 import { IAsteroidsData } from '../../models/IAsteroid';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import Row, { SkeletonRow } from './Row';
+import { useStyles } from './styles';
 
 const AsteroidsList: FC = () => {
+    const classes = useStyles();
     const { getAsteroidsByPage, setAsteroids } = useActions();
     const { asteroids, isLoading, error } = useTypedSelector(
         (store) => store.asteroidsReducer
@@ -62,6 +61,7 @@ const AsteroidsList: FC = () => {
     return (
         <Container maxWidth="md">
             <TablePagination
+                className={classes.tablePagination}
                 component="div"
                 count={asteroids?.page?.total_pages | 0}
                 page={page}
@@ -70,7 +70,7 @@ const AsteroidsList: FC = () => {
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 rowsPerPageOptions={[5, 10, 15, 20]}
             />
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} className={classes.table}>
                 <Table aria-label="collapsible table">
                     <TableHead>
                         <TableRow>

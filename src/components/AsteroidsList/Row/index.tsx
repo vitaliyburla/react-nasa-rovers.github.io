@@ -108,7 +108,7 @@ const Row: FC<IRowProps> = ({ row }) => {
                                 variant="standard"
                                 sx={{ m: 1, minWidth: 120 }}>
                                 <InputLabel id="demo-simple-select-standard-label">
-                                    Sort
+                                    sort
                                 </InputLabel>
                                 <Select
                                     labelId="demo-simple-select-standard-label"
@@ -116,12 +116,12 @@ const Row: FC<IRowProps> = ({ row }) => {
                                     value={sort}
                                     onChange={handleChange}
                                     label="Sort">
-                                    <MenuItem value={'date'}>Date</MenuItem>
+                                    <MenuItem value={'date'}>date</MenuItem>
                                     <MenuItem value={'miss_distance'}>
-                                        Miss distance
+                                        miss distance
                                     </MenuItem>
                                     <MenuItem value={'velocity'}>
-                                        Velocity
+                                        velocity
                                     </MenuItem>
                                 </Select>
                             </FormControl>
