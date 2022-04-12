@@ -7,7 +7,6 @@ const Home: FC = () => {
         <Container
             maxWidth="xl"
             sx={{
-                marginTop: '6rem',
                 position: 'relative',
             }}>
             <HomeNavigation />

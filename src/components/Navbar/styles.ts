@@ -11,12 +11,18 @@ export const useStyles = makeStyles((theme: Theme) => ({
         },
     },
     navbar: {
-        paddingTop: '1rem',
-        paddingBottom: '1rem',
+        height: '4rem',
         position: 'sticky',
         zIndex: '10',
         top: 0,
         backdropFilter: 'blur(5px)',
         '-webkit-backdrop-filter': 'blur(5px)',
+    },
+    linksWrapper: {
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 }));

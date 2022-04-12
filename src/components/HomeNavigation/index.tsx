@@ -12,22 +12,27 @@ import photo from '../../assets/images/mars-main.png';
 const HomeNavigation: FC = () => {
     const classes = useStyles();
     return (
-        <>
-            <Box
-                component="img"
-                src="/assets/images/mars-main.png"
-                className={classes.mainPhoto}
-            />
-            <Typography variant={'h1'} className={classes.header}>
-                let’s explore space
-            </Typography>
-            <Stack className={classes.homeNav} spacing={2}>
-                <HomeNavigationItem title="rovers" route={RouteNames.ROVERS} />
-                <HomeNavigationItem
-                    title="asteroids"
-                    route={RouteNames.ASTEROIDS}
+        <Box className={classes.homeContainer}>
+            <Box className={classes.homeNavContainer}>
+                <Box
+                    component="img"
+                    src="/assets/images/mars-main.png"
+                    className={classes.mainPhoto}
                 />
-            </Stack>
+                <Typography variant={'h1'} className={classes.header}>
+                    let’s explore space
+                </Typography>
+                <Stack className={classes.homeNav} spacing={2}>
+                    <HomeNavigationItem
+                        title="rovers"
+                        route={RouteNames.ROVERS}
+                    />
+                    <HomeNavigationItem
+                        title="asteroids"
+                        route={RouteNames.ASTEROIDS}
+                    />
+                </Stack>
+            </Box>
             <Box className={classes.marqueeBox}>
                 <Marquee gradient={false} speed={150}>
                     <Typography
@@ -40,7 +45,7 @@ const HomeNavigation: FC = () => {
                     </Typography>
                 </Marquee>
             </Box>
-        </>
+        </Box>
     );
 };
 
