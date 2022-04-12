@@ -1,9 +1,13 @@
+import { Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-export const useStyles = makeStyles({
-    root: {
-        background: 'linear-gradient(45deg, #919EAB 30%, #919EAB 90%)',
-        borderRadius: 3,
-        color: 'white',
+export const useStyles = makeStyles((theme: Theme) => ({
+    tablePagination: {
+        background: theme.palette.primary.main,
+        borderRadius: '4px 4px 0 0',
     },
-});
+    table: {
+        background: theme.palette.primary.main,
+        borderRadius: '0 0 4px 4px !important',
+    },
+}));

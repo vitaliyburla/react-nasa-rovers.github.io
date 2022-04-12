@@ -4,11 +4,14 @@ import HomeNavigation from '../../components/HomeNavigation';
 
 const Home: FC = () => {
     return (
-        <>
-            <Container maxWidth="xs">
-                <HomeNavigation />
-            </Container>
-        </>
+        <Container
+            maxWidth="xl"
+            sx={{
+                marginTop: '6rem',
+                position: 'relative',
+            }}>
+            <HomeNavigation />
+        </Container>
     );
 };
 

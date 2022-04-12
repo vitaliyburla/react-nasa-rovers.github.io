@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { IRover } from '../../models/IRover';
+import PageHeader from '../common/PageHeader';
 import CamerasDetails from './CamerasDetails';
 
 const RoverDetails: FC = () => {
@@ -28,7 +29,7 @@ const RoverDetails: FC = () => {
 
     if (isLoading)
         return (
-            <Grid container justifyContent="center">
+            <Grid container justifyContent="center" sx={{ mt: '5rem' }}>
                 <CircularProgress />
             </Grid>
         );
@@ -44,6 +45,10 @@ const RoverDetails: FC = () => {
 
     return (
         <Container maxWidth="lg">
+            <PageHeader
+                title={name}
+                subtitle="select one of the available cameras"
+            />
             <CamerasDetails />
         </Container>
     );

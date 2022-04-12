@@ -1,4 +1,4 @@
-import { Card, CardHeader, Typography } from '@mui/material';
+import { Box, Card, CardHeader, Typography } from '@mui/material';
 import React, { FC } from 'react';
 import { IRoverCamera } from '../../../../models/IRover';
 import { useStyles } from './styles';
@@ -17,25 +17,19 @@ const CameraCard: FC<ICameraCardProps> = ({
     const classes = useStyles();
 
     return (
-        <Card onClick={() => setSelectedCamera(camera.name.toLowerCase())}>
-            <CardHeader
-                className={
-                    selectedCamera === camera.name.toLowerCase()
-                        ? classes.cameraCardActive
-                        : classes.cameraCard
-                }
-                title={
-                    <Typography variant="body1" className={classes.title}>
-                        {camera.name}
-                    </Typography>
-                }
-                subheader={
-                    <Typography variant="body2" className={classes.subheader}>
-                        {camera.full_name}
-                    </Typography>
-                }
-            />
-        </Card>
+        <Box
+            className={[
+                classes.cameraCard,
+                selectedCamera === camera.name.toLowerCase() &&
+                    classes.cameraCardActive,
+            ].join(' ')}
+            onClick={() => setSelectedCamera(camera.name.toLowerCase())}>
+            <Box>
+                <Typography variant="body2" className={classes.title}>
+                    {camera.full_name}
+                </Typography>
+            </Box>
+        </Box>
     );
 };
 

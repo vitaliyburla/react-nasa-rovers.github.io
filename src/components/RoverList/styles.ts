@@ -1,9 +1,14 @@
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
-    root: {
-        background: 'linear-gradient(45deg, #919EAB 30%, #919EAB 90%)',
-        borderRadius: 3,
-        color: 'white',
+    roversList: {
+        width: '50%',
+    },
+    roverPhoto: {
+        position: 'absolute',
+        zIndex: '-100',
+        right: '3rem',
+        top: '4rem',
+        maxHeight: '40rem',
     },
 });
